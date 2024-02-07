@@ -17,7 +17,7 @@ McGill University, Montreal QC
 --------------------------------------------------------------------------------
 GENERAL INFORMATION
 --------------------------------------------------------------------------------
-This README.txt file was completed on 2024-01-23 by
+This README.txt file was initially completed on 2024-01-23 by
   Sean Nesdoly
   <sean.nesdoly@mail.mcgill.ca>
   Research Assistant
@@ -84,6 +84,12 @@ DATA REPOSITORY INFORMATION
       <rdm.library@mcgill.ca>
 
   Initial date of submission to repository: 2024-01-23
+
+CHANGELOG
+  2024-02-07: v0.1
+    Match MWF spectra *.dat files with dataset naming scheme.
+    Add ExampleData.xlsx and ProcessedVariables.xlsx.
+    Fix 'Biomass' column in AdV03_LucullusBioprocessData.xlsx.
 
 --------------------------------------------------------------------------------
 METHODOLOGICAL INFORMATION
@@ -212,7 +218,7 @@ METHODOLOGICAL INFORMATION
 
        @TODO(sean): Provide MWF *.ini configuration files with variable values!
        This would only be truly useful if given access to the MWF sourcecode;
-       however, we do not currently have permission to openly it.
+       however, we do not currently have permission to openly share it.
 
      OFF-LINE MEASUREMENTS
        Devices/sensors used to capture off-line measurements (requiring manual
@@ -280,7 +286,7 @@ METHODOLOGICAL INFORMATION
 
 --------------------------------------------------------------------------------
 SUMMARY OF DATASET
-@TODO(sean): Remove whitespace from all filenames (reflect update in code, too)
+@TODO(sean): Change code to work with new whitespace-free filenames, new folders
 @TODO(sean): Standardize order of variables (columns)!
 @TODO(sean): Convert all Excel sheets to a non-proprietary format (CSV)
 @TODO(sean): Fix Excel column spacing for easy viewing of data
@@ -295,7 +301,7 @@ Hash of archived dataset to confirm integrity:
   $ sha256sum mvda_adenovirus_bioprocess_data.tar.gz > \
     mvda_adenovirus_bioprocess_data.tar.gz.sha256
   $ cat mvda_adenovirus_bioprocess_data.tar.gz.sha256
-  888bf5af54c513ce87f479fded09c2ac05e9595d55f7a9494d228491c3e23089 mvda_adenovirus_bioprocess_data.tar.gz
+  67486d626b2499d238e4b63a77734a013023d6df1e51ee20b9361ef56bbacc8f mvda_adenovirus_bioprocess_data.tar.gz
 
 To validate SHA256 checksum against archived dataset:
 
@@ -342,53 +348,56 @@ LIST OF FILES
   ./
   ├── README.txt
   ├── mvda_adenovirus_bioprocess_data.tar.gz.sha256
-  └── mvda_adenovirus_bioprocess_data.tar.gz/      # (contents after extracting)
-      ├── AdV01_LucullusBioprocessData.xlsx
-      ├── AdV01_MWF/
-      │   ├── Br02-AD-F hycell.time
-      │   ├── Spec_Area1.txt
-      │   ├── changes.txt
-      │   ├── predict_var.txt
-      │   └── spectra/
-      │       ├── Br02-AD-F hycell00000.dat
-      │       ├── ...
-      │       └── Br02-AD-F hycell01733.dat
-      ├── AdV02_LucullusBioprocessData.xlsx
-      ├── AdV02_MWF/
-      │   ├── Barbara BR2.time
-      │   ├── Spec_Area1.txt
-      │   ├── background.txt
-      │   ├── changes.txt
-      │   ├── predict_var.txt
-      │   └── spectra/
-      │       ├── Barbara BR200000.dat
-      │       ├── ...
-      │       └── Barbara BR201732.dat
-      ├── AdV03_LucullusBioprocessData.xlsx
-      ├── AdV03_MWF/
-      │   ├── BR03.time
-      │   ├── Spec_Area1.txt
-      │   ├── background-OFF.txt
-      │   ├── background-oN.txt
-      │   ├── changes.txt
-      │   ├── predict_var.txt
-      │   └── spectra/
-      │       ├── BR0300000.dat
-      │       ├── ...
-      │       └── BR0301226.dat
-      ├── CellGrowth_LucullusBioprocessData.xlsx
-      └── CellGrowth_MWF/
-          ├── Spec_Area1.txt
-          ├── predict_var.txt
-          ├── spectra/
-          │   ├── xxaav0300000.dat
-          │   ├── ...
-          │   └── xxaav0302013.dat
-          └── xxaav03.time
+  ├── mvda_adenovirus_bioprocess_data.tar.gz/      # (contents after extracting)
+  │   ├── AdV01_LucullusBioprocessData.xlsx
+  │   ├── AdV01_MWF/
+  │   │   ├── AdV01.time
+  │   │   ├── Spec_Area1.txt
+  │   │   ├── changes.txt
+  │   │   ├── predict_var.txt
+  │   │   └── spectra/
+  │   │       ├── AdV01_00000.dat
+  │   │       ├── ...
+  │   │       └── AdV01_01733.dat
+  │   ├── AdV02_LucullusBioprocessData.xlsx
+  │   ├── AdV02_MWF/
+  │   │   ├── AdV02.time
+  │   │   ├── Spec_Area1.txt
+  │   │   ├── background.txt
+  │   │   ├── changes.txt
+  │   │   ├── predict_var.txt
+  │   │   └── spectra/
+  │   │       ├── AdV02_00000.dat
+  │   │       ├── ...
+  │   │       └── AdV02_01732.dat
+  │   ├── AdV03_LucullusBioprocessData.xlsx
+  │   ├── AdV03_MWF/
+  │   │   ├── AdV03.time
+  │   │   ├── Spec_Area1.txt
+  │   │   ├── background-OFF.txt
+  │   │   ├── background-oN.txt
+  │   │   ├── changes.txt
+  │   │   ├── predict_var.txt
+  │   │   └── spectra/
+  │   │       ├── AdV03_00000.dat
+  │   │       ├── ...
+  │   │       └── AdV03_01226.dat
+  │   ├── CellGrowth_LucullusBioprocessData.xlsx
+  │   └── CellGrowth_MWF/
+  │       ├── CellGrowth.time
+  │       ├── Spec_Area1.txt
+  │       ├── predict_var.txt
+  │       └── spectra/
+  │           ├── CellGrowth_00000.dat
+  │           ├── ...
+  │           └── CellGrowth_02013.dat
+  ├── ExampleData.xlsx
+  └── ProcessedVariables.xlsx
   
-  10 directories, 6731 files
+  10 directories, 6734 files
+  (count includes README.txt and *.sha256 files at top-level)
   ```
-  Generated: 2024-01-22T13:10:09
+  Generated: 2024-02-07T00:32:08
 
 DISK USAGE STATISTICS
 
@@ -399,12 +408,14 @@ DISK USAGE STATISTICS
     28M     ./AdV02_LucullusBioprocessData.xlsx
     20M     ./AdV03_LucullusBioprocessData.xlsx
     37M     ./CellGrowth_LucullusBioprocessData.xlsx
+    21M     ./ExampleData.xlsx
+    24K     ./ProcessedVariables.xlsx
     343M    ./AdV01_MWF/spectra/
     346M    ./AdV02_MWF/spectra/
     244M    ./AdV03_MWF/spectra/
     402M    ./CellGrowth_MWF/spectra/
   ```
-  Generated: 2024-01-22T13:42:11
+  Generated: 2024-02-07T00:44:48
 
 RELATIONSHIPS BETWEEN FILETYPES
 
@@ -464,7 +475,6 @@ AdV02_LucullusBioprocessData.xlsx
   Dimensions         : 8646 rows, 22 columns
 
 AdV03_LucullusBioprocessData.xlsx
-@TODO: Biomass column is broken!
 
   Instrument used    : Lucullus PIMS via Applikon my-Control unit
   Excel worksheet    : Sheet 1 (Lucullus Data)
@@ -603,6 +613,7 @@ CellGrowth_MWF/
   Date of generation : 2022-09-02T12:10:53 to 2022-09-09T11:56:09
   Metadata in file?  : Yes (no units)
   Number of spectra  : 2014
+  Internal name      : xxaav03
 
 AdV01_MWF/
 
@@ -610,6 +621,7 @@ AdV01_MWF/
   Date of generation : 2022-05-14T10:35:53 to 2022-05-20T11:01:05
   Metadata in file?  : Yes (no units)
   Number of spectra  : 1734
+  Internal name      : 'Br02-AD-F hycell'
 
 AdV02_MWF/
 
@@ -617,6 +629,7 @@ AdV02_MWF/
   Date of generation : 2022-06-17T14:08:31 to 2022-07-07T11:50:46
   Metadata in file?  : Yes (no units)
   Number of spectra  : 1733
+  Internal name      : 'Barbara BR2'
 
 AdV03_MWF/
 
@@ -624,6 +637,7 @@ AdV03_MWF/
   Date of generation : 2022-07-07T12:42:24 to 2022-07-14T15:54:12
   Metadata in file?  : Yes (no units)
   Number of spectra  : 1227
+  Internal name      : BR03
 
 *.dat
 
